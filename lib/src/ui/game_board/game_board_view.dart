@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../components/tile.dart';
 import 'game_board_view_model.dart';
@@ -17,18 +18,21 @@ class GameBoardView extends ConsumerWidget {
     final validMoves = ref.watch(
         gameBoardViewModelProvider.select((_) => _.validMovesOfSelectedPiece));
 
-    // print('loop starting');
-    // for (var element in validMoves) {
-    //   print("${element.i} ${element.j}");
-    // }
-    // print(validMoves.length);
-
     return Scaffold(
       backgroundColor: Colors.grey[600],
       body: SafeArea(
         child: Column(
           children: [
-            const Expanded(child: Text('C H E S S')),
+            Expanded(
+              child: Center(
+                child: Text(
+                  'C H E S S',
+                  style: GoogleFonts.poppins(
+                    fontSize: 38,
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               flex: 3,
               child: GridView.builder(
@@ -48,17 +52,6 @@ class GameBoardView extends ConsumerWidget {
                       ),
                     );
                   }),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(gameStatus.name),
-                  Text(selectedIndex.toString()),
-                  Text(
-                    "${validMoves.map((pair) => pair.i).toList()} ${validMoves.map((pair) => pair.j).toList()}",
-                  ),
-                ],
-              ),
             ),
           ],
         ),
