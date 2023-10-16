@@ -40,6 +40,29 @@ class Tile extends ConsumerWidget {
       if (row == pair.i && col == pair.j) isValidMove = true;
     }
 
+    double width = 25;
+    switch (piece?.type) {
+      case PieceType.pawn:
+        width = 22;
+        break;
+      case PieceType.knight:
+        width = 28;
+        break;
+      case PieceType.king:
+        width = 32;
+        break;
+      case PieceType.rook:
+        width = 29;
+        break;
+      case PieceType.bishop:
+        width = 22;
+        break;
+      case PieceType.queen:
+        width = 32;
+        break;
+      default:
+    }
+
     return GestureDetector(
       onTap: () =>
           ref.read(gameBoardViewModelProvider.notifier).tileTapped(index),
@@ -53,7 +76,7 @@ class Tile extends ConsumerWidget {
                     child: Image.asset(
                       'assets/images/${piece!.type.name}.png',
                       color: piece!.isWhite ? Colors.white : Colors.black,
-                      width: 30,
+                      width: width,
                     ),
                   )
                 : null,
