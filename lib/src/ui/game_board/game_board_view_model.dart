@@ -127,6 +127,7 @@ class GameBoardViewModel extends StateNotifier<GameBoardViewState> {
         break;
     }
     _generateValidMoves();
+    // print(state.board[4][0]);
   }
 
   _generateValidMoves() {
